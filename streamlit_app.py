@@ -16,7 +16,7 @@ if v_m > v_M:
 else:
     encontrado = False
     intentos = 0
-    max_intentos = 1000  # Límite para evitar bucles infinitos
+    max_intentos = 10000000  # Límite para evitar bucles infinitos
 
     while not encontrado and intentos < max_intentos:
         # Generar n-1 números aleatorios
