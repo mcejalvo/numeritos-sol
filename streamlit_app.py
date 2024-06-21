@@ -2,7 +2,7 @@ import streamlit as st
 import numpy as np
 
 # Título del dashboard
-st.title('Los numeritos de Sol')
+st.title(':violet[Los numeritos de Sol]')
 
 # Entradas del usuario
 s = st.number_input('Suma total', min_value=1, value=10)
