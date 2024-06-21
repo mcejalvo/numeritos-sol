@@ -1,40 +1,43 @@
-import altair as alt
-import numpy as np
-import pandas as pd
 import streamlit as st
+import numpy as np
 
-"""
-# Welcome to Streamlit!
+# Título del dashboard
+st.title('Los numeritos de Sol')
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:.
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
+# Entradas del usuario
+s = st.number_input('Suma total (s)', min_value=1, value=10)
+v_m = st.number_input('Valor mínimo (v_m)', min_value=1, value=1)
+v_M = st.number_input('Valor máximo (v_M)', min_value=1, value=10)
+n = st.number_input('Número total de sumandos (n)', min_value=2, value=3)
 
-In the meantime, below is an example of what you can do with just a few lines of code:
-"""
+# Validación de entrada
+if v_m > v_M:
+    st.error('El valor mínimo no puede ser mayor que el valor máximo')
+else:
+    encontrado = False
+    intentos = 0
+    max_intentos = 1000  # Límite para evitar bucles infinitos
 
-num_points = st.slider("Number of points in spiral", 1, 10000, 1100)
-num_turns = st.slider("Number of turns in spiral", 1, 300, 31)
+    while not encontrado and intentos < max_intentos:
+        # Generar n-1 números aleatorios
+        numeros_aleatorios = np.random.randint(v_m, v_M+1, n-1)
+        
+        # Calcular el último número
+        suma_parcial = np.sum(numeros_aleatorios)
+        ultimo_numero = s - suma_parcial
 
-indices = np.linspace(0, 1, num_points)
-theta = 2 * np.pi * num_turns * indices
-radius = indices
+        if v_m <= ultimo_numero <= v_M:
+            encontrado = True
+            numeros_aleatorios = np.append(numeros_aleatorios, ultimo_numero)
+        intentos += 1
 
-x = radius * np.cos(theta)
-y = radius * np.sin(theta)
+    if encontrado:
+        # Mostrar los números generados
+        st.write('Números generados:')
+        st.write(numeros_aleatorios)
 
-df = pd.DataFrame({
-    "x": x,
-    "y": y,
-    "idx": indices,
-    "rand": np.random.randn(num_points),
-})
-
-st.altair_chart(alt.Chart(df, height=700, width=700)
-    .mark_point(filled=True)
-    .encode(
-        x=alt.X("x", axis=None),
-        y=alt.Y("y", axis=None),
-        color=alt.Color("idx", legend=None, scale=alt.Scale()),
-        size=alt.Size("rand", legend=None, scale=alt.Scale(range=[1, 150])),
-    ))
+        # Verificar la suma
+        st.write('Suma de los números generados:')
+        st.write(np.sum(numeros_aleatorios))
+    else:
+        st.error('No se pudo generar una secuencia válida dentro del número máximo de intentos.')
