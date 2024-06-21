@@ -3,7 +3,9 @@ import numpy as np
 
 # Título del dashboar
 st.title(':violet[Los ] :rainbow[numeritos] :violet[de Sol] ☀️')
+
 st.header("", divider='rainbow')
+st.subheader('Parámetros')
 
 
 # Entradas del usuario
@@ -36,6 +38,8 @@ else:
 
     if encontrado:
         st.header("", divider='rainbow')
+        st.subheader('Resultado')
+
         # Mostrar los números generados
         st.write('Números generados:')
         st.write(numeros_aleatorios)
