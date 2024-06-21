@@ -1,8 +1,10 @@
 import streamlit as st
 import numpy as np
 
-# Título del dashboard
-st.title(':violet[Los numeritos de Sol]')
+# Título del dashboar
+st.title(':violet[Los ] :rainbow[numeritos] :violet[de Sol] ☀️')
+st.header("", divider='rainbow')
+
 
 # Entradas del usuario
 s = st.number_input('Suma total', min_value=1, value=10)
@@ -33,6 +35,7 @@ else:
         intentos += 1
 
     if encontrado:
+        st.header("", divider='rainbow')
         # Mostrar los números generados
         st.write('Números generados:')
         st.write(numeros_aleatorios)
