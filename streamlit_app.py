@@ -9,6 +9,8 @@ s = st.number_input('Suma total (s)', min_value=1, value=10)
 v_m = st.number_input('Valor mínimo (v_m)', min_value=1, value=1)
 v_M = st.number_input('Valor máximo (v_M)', min_value=1, value=10)
 n = st.number_input('Número total de sumandos (n)', min_value=2, value=3)
+max_intentos = st.number_input('Número máximo de intentos (subir si no se encuentra solución)', value=10000)
+
 
 # Validación de entrada
 if v_m > v_M:
@@ -16,7 +18,6 @@ if v_m > v_M:
 else:
     encontrado = False
     intentos = 0
-    max_intentos = 10000000  # Límite para evitar bucles infinitos
 
     while not encontrado and intentos < max_intentos:
         # Generar n-1 números aleatorios
