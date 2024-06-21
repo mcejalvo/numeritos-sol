@@ -5,10 +5,10 @@ import numpy as np
 st.title('Los numeritos de Sol')
 
 # Entradas del usuario
-s = st.number_input('Suma total (s)', min_value=1, value=10)
-v_m = st.number_input('Valor mínimo (v_m)', min_value=1, value=1)
-v_M = st.number_input('Valor máximo (v_M)', min_value=1, value=10)
-n = st.number_input('Número total de sumandos (n)', min_value=2, value=3)
+s = st.number_input('Suma total', min_value=1, value=10)
+v_m = st.number_input('Valor mínimo', min_value=1, value=1)
+v_M = st.number_input('Valor máximo', min_value=1, value=10)
+n = st.number_input('Número total de sumandos', min_value=2, value=3)
 max_intentos = st.number_input('Número máximo de intentos (subir si no se encuentra solución)', value=10000)
 
 
